@@ -1,91 +1,93 @@
-{
-  "id": "1",
-  "checkoutUrl": "https://example.com/checkout/cart123",
-  "cost": {
-    "subtotalAmount": {
-      "amount": "100.00",
-      "currencyCode": "USD"
-    },
-    "totalAmount": {
-      "amount": "110.00",
-      "currencyCode": "USD"
-    },
-    "totalTaxAmount": {
-      "amount": "10.00",
-      "currencyCode": "USD"
-    }
-  },
-  "totalQuantity": 3,
-  "lines": [
-    {
-      "id": "line1",
-      "quantity": 1,
-      "cost": {
-        "totalAmount": {
-          "amount": "50.00",
-          "currencyCode": "USD"
-        }
+[
+  {
+    "id": "1",
+    "checkoutUrl": "https://example.com/checkout/cart123",
+    "cost": {
+      "subtotalAmount": {
+        "amount": "100.00",
+        "currencyCode": "USD"
       },
-      "merchandise": {
-        "id": "merch1",
-        "title": "Product 1",
-        "selectedOptions": [
-          {
-            "name": "Size",
-            "value": "M"
-          },
-          {
-            "name": "Color",
-            "value": "Red"
+      "totalAmount": {
+        "amount": "110.00",
+        "currencyCode": "USD"
+      },
+      "totalTaxAmount": {
+        "amount": "10.00",
+        "currencyCode": "USD"
+      }
+    },
+    "totalQuantity": 3,
+    "lines": [
+      {
+        "id": "line1",
+        "quantity": 1,
+        "cost": {
+          "totalAmount": {
+            "amount": "50.00",
+            "currencyCode": "USD"
           }
-        ],
-        "product": {
-          "id": "prod1",
-          "handle": "product-1",
+        },
+        "merchandise": {
+          "id": "merch1",
           "title": "Product 1",
-          "featuredImage": {
-            "url": "/assets/images/t-shirt-2.png",
-            "altText": "Product 1 Image",
-            "width": 600,
-            "height": 400
+          "selectedOptions": [
+            {
+              "name": "Size",
+              "value": "M"
+            },
+            {
+              "name": "Color",
+              "value": "Red"
+            }
+          ],
+          "product": {
+            "id": "prod1",
+            "handle": "product-1",
+            "title": "Product 1",
+            "featuredImage": {
+              "url": "/assets/images/t-shirt-2.png",
+              "altText": "Product 1 Image",
+              "width": 600,
+              "height": 400
+            }
           }
-        }
-      }
-    },
-    {
-      "id": "line2",
-      "quantity": 2,
-      "cost": {
-        "totalAmount": {
-          "amount": "60.00",
-          "currencyCode": "USD"
         }
       },
-      "merchandise": {
-        "id": "merch2",
-        "title": "Product 2",
-        "selectedOptions": [
-          {
-            "name": "Size",
-            "value": "L"
-          },
-          {
-            "name": "Color",
-            "value": "Blue"
+      {
+        "id": "line2",
+        "quantity": 2,
+        "cost": {
+          "totalAmount": {
+            "amount": "60.00",
+            "currencyCode": "USD"
           }
-        ],
-        "product": {
-          "id": "prod2",
-          "handle": "product-2",
-          "title": "Hoodie 1",
-          "featuredImage": {
-            "url": "/assets/images/t-shirt-2.png",
-            "altText": "Hoodie",
-            "width": 600,
-            "height": 400
+        },
+        "merchandise": {
+          "id": "merch2",
+          "title": "Product 2",
+          "selectedOptions": [
+            {
+              "name": "Size",
+              "value": "L"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            }
+          ],
+          "product": {
+            "id": "prod2",
+            "handle": "product-2",
+            "title": "Hoodie 1",
+            "featuredImage": {
+              "url": "/assets/images/t-shirt-2.png",
+              "altText": "Hoodie",
+              "width": 600,
+              "height": 400
+            }
           }
         }
       }
-    }
-  ]
-}
+    ]
+  }
+]

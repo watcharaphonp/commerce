@@ -1,0 +1,14 @@
+[
+  {
+    "title": "All",
+    "path": "/"
+  },
+  {
+    "title": "Shirt",
+    "path": "/search/shirt"
+  },
+  {
+    "title": "Hoodie",
+    "path": "/search/hoodie"
+  }
+]

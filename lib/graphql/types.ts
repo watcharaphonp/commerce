@@ -8,7 +8,7 @@ export type Edge<T> = {
   node: T;
 };
 
-export type Cart = Omit<ShopifyCart, 'lines'> & {
+export type Cart = Omit<CartInfo, 'lines'> & {
   lines: CartItem[];
 };
 
@@ -95,7 +95,7 @@ export type SEO = {
   description: string;
 };
 
-export type ShopifyCart = {
+export type CartInfo = {
   id: string | undefined;
   checkoutUrl: string;
   cost: {
@@ -136,23 +136,23 @@ export type ShopifyProduct = {
   updatedAt: string;
 };
 
-export type ShopifyCartOperation = {
+export type CartInfoOperation = {
   data: {
-    cart: ShopifyCart;
+    cart: CartInfo;
   };
   variables: {
     cartId: string;
   };
 };
 
-export type ShopifyCreateCartOperation = {
-  data: { cartCreate: { cart: ShopifyCart } };
+export type CreateCartOperationParams = {
+  data: { cartCreate: { cart: CartInfo } };
 };
 
-export type ShopifyAddToCartOperation = {
+export type AddToCartOperationParams = {
   data: {
     cartLinesAdd: {
-      cart: ShopifyCart;
+      cart: CartInfo;
     };
   };
   variables: {
@@ -164,10 +164,10 @@ export type ShopifyAddToCartOperation = {
   };
 };
 
-export type ShopifyRemoveFromCartOperation = {
+export type RemoveFromCartOperationParams = {
   data: {
     cartLinesRemove: {
-      cart: ShopifyCart;
+      cart: CartInfo;
     };
   };
   variables: {
@@ -176,10 +176,10 @@ export type ShopifyRemoveFromCartOperation = {
   };
 };
 
-export type ShopifyUpdateCartOperation = {
+export type UpdateCartOperationParams = {
   data: {
     cartLinesUpdate: {
-      cart: ShopifyCart;
+      cart: CartInfo;
     };
   };
   variables: {
@@ -192,7 +192,7 @@ export type ShopifyUpdateCartOperation = {
   };
 };
 
-export type ShopifyCollectionOperation = {
+export type CollectionOperation = {
   data: {
     collection: ShopifyCollection;
   };

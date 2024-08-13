@@ -1,33 +1,27 @@
 import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from 'lib/constants';
-import { isShopifyError } from 'lib/type-guards';
 import { ensureStartsWith } from 'lib/utils';
 import { revalidateTag } from 'next/cache';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import cartList from '../../database/carts.json';
+import categoryList from '../../database/categories.json';
 import collectionList from '../../database/collections.json';
 import productList from '../../database/products.json';
-import {
-  addToCartMutation,
-  createCartMutation,
-  editCartItemsMutation,
-  removeFromCartMutation
-} from './mutations/cart';
+import { editCartItemsMutation, removeFromCartMutation } from './mutations/cart';
 import {
   Cart,
+  CartInfo,
+  CartItem,
   Collection,
   Connection,
   Image,
   Menu,
   Page,
   Product,
-  ShopifyAddToCartOperation,
-  ShopifyCart,
+  RemoveFromCartOperationParams,
   ShopifyCollection,
-  ShopifyCreateCartOperation,
   ShopifyProduct,
-  ShopifyRemoveFromCartOperation,
-  ShopifyUpdateCartOperation
+  UpdateCartOperationParams
 } from './types';
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
@@ -38,7 +32,7 @@ const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
-export async function shopifyFetch<T>({
+export async function apiFetch<T>({
   cache = 'force-cache',
   headers,
   query,
@@ -56,7 +50,6 @@ export async function shopifyFetch<T>({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': key,
         ...headers
       },
       body: JSON.stringify({
@@ -78,15 +71,6 @@ export async function shopifyFetch<T>({
       body
     };
   } catch (e) {
-    if (isShopifyError(e)) {
-      throw {
-        cause: e.cause?.toString() || 'unknown',
-        status: e.status || 500,
-        message: e.message,
-        query
-      };
-    }
-
     throw {
       error: e,
       query
@@ -98,7 +82,7 @@ const removeEdgesAndNodes = <T>(array: Connection<T>): T[] => {
   return array.edges.map((edge) => edge?.node);
 };
 
-const reshapeCart = (cart: ShopifyCart): Cart => {
+const reshapeCart = (cart: CartInfo): Cart => {
   if (!cart.cost?.totalTaxAmount) {
     cart.cost.totalTaxAmount = {
       amount: '0.0',
@@ -182,31 +166,67 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
 };
 
 export async function createCart(): Promise<Cart> {
-  const res = await shopifyFetch<ShopifyCreateCartOperation>({
-    query: createCartMutation,
-    cache: 'no-store'
-  });
+  // Add logic
 
-  return reshapeCart(res.body.data.cartCreate.cart);
+  return cartList[0] as Cart;
 }
 
 export async function addToCart(
   cartId: string,
   lines: { merchandiseId: string; quantity: number }[]
 ): Promise<Cart> {
-  const res = await shopifyFetch<ShopifyAddToCartOperation>({
-    query: addToCartMutation,
-    variables: {
-      cartId,
-      lines
-    },
-    cache: 'no-store'
+  // Add logic to add to cart
+  let myCart: Cart = cartList.find((cart) => cart.id === cartId) as Cart;
+
+  if (!myCart) return {} as Cart;
+
+  let newItems: CartItem[] = [];
+
+  lines.forEach((line) => {
+    newItems.push({
+      id: 'line1',
+      quantity: 1,
+      cost: {
+        totalAmount: {
+          amount: '50.00',
+          currencyCode: 'USD'
+        }
+      },
+      merchandise: {
+        id: line.merchandiseId,
+        title: 'Product 1',
+        selectedOptions: [
+          {
+            name: 'Size',
+            value: 'M'
+          },
+          {
+            name: 'Color',
+            value: 'Red'
+          }
+        ],
+        product: {
+          id: 'prod1',
+          handle: 'product-1',
+          title: 'Product 1',
+          featuredImage: {
+            url: '/assets/images/t-shirt-2.png',
+            altText: 'Product 1 Image',
+            width: 600,
+            height: 400
+          }
+        }
+      }
+    });
+
+    myCart.lines = [...myCart.lines, ...newItems];
   });
-  return reshapeCart(res.body.data.cartLinesAdd.cart);
+
+  return myCart;
 }
 
 export async function removeFromCart(cartId: string, lineIds: string[]): Promise<Cart> {
-  const res = await shopifyFetch<ShopifyRemoveFromCartOperation>({
+  const res = await apiFetch<RemoveFromCartOperationParams>({
     query: removeFromCartMutation,
     variables: {
       cartId,
@@ -222,7 +242,7 @@ export async function updateCart(
   cartId: string,
   lines: { id: string; merchandiseId: string; quantity: number }[]
 ): Promise<Cart> {
-  const res = await shopifyFetch<ShopifyUpdateCartOperation>({
+  const res = await apiFetch<UpdateCartOperationParams>({
     query: editCartItemsMutation,
     variables: {
       cartId,
@@ -239,7 +259,7 @@ export async function getCart(cartId: string | undefined): Promise<Cart | undefi
     return undefined;
   }
 
-  return cartList;
+  return cartList[0];
 }
 
 export async function getCollection(id: string): Promise<Collection | undefined> {
@@ -265,16 +285,7 @@ export async function getCollections(): Promise<Collection[]> {
 }
 
 export async function getMenu(id: string): Promise<Menu[]> {
-  return [
-    {
-      title: 'All',
-      path: '/'
-    },
-    {
-      title: 'Shirt',
-      path: '/search/shirt'
-    }
-  ];
+  return categoryList;
 }
 
 export async function getPage(id: string): Promise<Page> {
@@ -332,20 +343,10 @@ export async function getProducts({
   reverse?: boolean;
   sortKey?: string;
 }): Promise<Product[]> {
+  console.log('query', query);
   const exampleProducts: Product[] = productList;
 
   return exampleProducts;
-  // const res = await shopifyFetch<ShopifyProductsOperation>({
-  //   query: getProductsQuery,
-  //   tags: [TAGS.products],
-  //   variables: {
-  //     query,
-  //     reverse,
-  //     sortKey
-  //   }
-  // });
-
-  // return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.
