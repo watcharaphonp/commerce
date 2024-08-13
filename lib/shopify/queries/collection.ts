@@ -15,8 +15,8 @@ const collectionFragment = /* GraphQL */ `
 `;
 
 export const getCollectionQuery = /* GraphQL */ `
-  query getCollection($handle: String!) {
-    collection(handle: $handle) {
+  query getCollection($id: String!) {
+    collection(id: $id) {
       ...collection
     }
   }
@@ -38,11 +38,11 @@ export const getCollectionsQuery = /* GraphQL */ `
 
 export const getCollectionProductsQuery = /* GraphQL */ `
   query getCollectionProducts(
-    $handle: String!
+    $id: String!
     $sortKey: ProductCollectionSortKeys
     $reverse: Boolean
   ) {
-    collection(handle: $handle) {
+    collection(id: $id) {
       products(sortKey: $sortKey, reverse: $reverse, first: 100) {
         edges {
           node {

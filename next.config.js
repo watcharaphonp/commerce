@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
+    domains: ['*'],
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
@@ -9,5 +10,9 @@ module.exports = {
         pathname: '/s/files/**'
       }
     ]
+  },
+  compilerOptions: {
+    resolveJsonModule: true,
+    esModuleInterop: true,
   }
 };

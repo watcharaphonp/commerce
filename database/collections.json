@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "handle": "summer-collection",
+    "title": "Summer Collection",
+    "description": "A vibrant selection of summer outfits and accessories.",
+    "seo": {
+      "title": "Summer Collection",
+      "description": "Explore the latest summer trends in our vibrant Summer Collection."
+    },
+    "updatedAt": "2024-08-13T10:00:00Z",
+    "path": "/collections/summer-collection"
+  },
+  {
+    "id": "2",
+    "handle": "winter-collection",
+    "title": "Winter Collection",
+    "description": "Warm and cozy outfits for the cold season.",
+    "seo": {
+      "title": "Winter Collection",
+      "description": "Stay warm and stylish with our Winter Collection."
+    },
+    "updatedAt": "2024-08-12T08:00:00Z",
+    "path": "/collections/winter-collection"
+  },
+  {
+    "id": "3",
+    "handle": "new-arrivals",
+    "title": "New Arrivals",
+    "description": "Check out the latest products added to our store.",
+    "seo": {
+      "title": "New Arrivals",
+      "description": "Discover the newest additions to our collection."
+    },
+    "updatedAt": "2024-08-14T09:00:00Z",
+    "path": "/collections/new-arrivals"
+  }
+]

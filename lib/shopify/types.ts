@@ -108,6 +108,7 @@ export type ShopifyCart = {
 };
 
 export type ShopifyCollection = {
+  id: string;
   handle: string;
   title: string;
   description: string;
@@ -234,8 +235,8 @@ export type ShopifyMenuOperation = {
 };
 
 export type ShopifyPageOperation = {
-  data: { pageByHandle: Page };
-  variables: { handle: string };
+  data: { pageById: Page };
+  variables: { id: string };
 };
 
 export type ShopifyPagesOperation = {

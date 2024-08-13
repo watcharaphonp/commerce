@@ -1,0 +1,250 @@
+[
+  {
+    "id": "1",
+    "handle": "product-1",
+    "availableForSale": true,
+    "title": "Product 1",
+    "description": "This is the description for Product 1.",
+    "descriptionHtml": "<p>This is the description for Product 1.</p>",
+    "options": [
+      {
+        "id": "option1",
+        "name": "Size",
+        "values": ["S", "M", "L"]
+      },
+      {
+        "id": "option2",
+        "name": "Color",
+        "values": ["Red", "Blue", "Green"]
+      }
+    ],
+    "priceRange": {
+      "maxVariantPrice": {
+        "amount": "50.00",
+        "currencyCode": "USD"
+      },
+      "minVariantPrice": {
+        "amount": "30.00",
+        "currencyCode": "USD"
+      }
+    },
+    "variants": [
+      {
+        "id": "variant1",
+        "title": "Small Red",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Size",
+            "value": "S"
+          },
+          {
+            "name": "Color",
+            "value": "Red"
+          }
+        ],
+        "price": {
+          "amount": "30.00",
+          "currencyCode": "USD"
+        }
+      },
+      {
+        "id": "variant2",
+        "title": "Medium Blue",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Size",
+            "value": "M"
+          },
+          {
+            "name": "Color",
+            "value": "Blue"
+          }
+        ],
+        "price": {
+          "amount": "40.00",
+          "currencyCode": "USD"
+        }
+      }
+    ],
+    "images": [
+      {
+        "url": "/assets/images/hoodie-1.png",
+        "altText": "Product 1 Image 1",
+        "width": 600,
+        "height": 400
+      }
+    ],
+    "featuredImage": {
+      "url": "/assets/images/hoodie-1.png",
+      "altText": "Product 1 Featured Image",
+      "width": 600,
+      "height": 400
+    },
+    "tags": ["new", "sale"],
+    "seo": {
+      "title": "Product 1 SEO Title",
+      "description": "SEO description for Product 1."
+    },
+    "updatedAt": "2024-08-13T12:00:00Z"
+  },
+  {
+    "id": "2",
+    "handle": "product-2",
+    "availableForSale": false,
+    "title": "Product 2",
+    "description": "This is the description for Product 2.",
+    "descriptionHtml": "<p>This is the description for Product 2.</p>",
+    "options": [
+      {
+        "id": "option3",
+        "name": "Material",
+        "values": ["Cotton", "Polyester"]
+      }
+    ],
+    "priceRange": {
+      "maxVariantPrice": {
+        "amount": "75.00",
+        "currencyCode": "USD"
+      },
+      "minVariantPrice": {
+        "amount": "60.00",
+        "currencyCode": "USD"
+      }
+    },
+    "variants": [
+      {
+        "id": "variant3",
+        "title": "Cotton",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Material",
+            "value": "Cotton"
+          }
+        ],
+        "price": {
+          "amount": "60.00",
+          "currencyCode": "USD"
+        }
+      }
+    ],
+    "images": [
+      {
+        "url": "/assets/images/t-shirt-2.png",
+        "altText": "Product 2 Image 1",
+        "width": 600,
+        "height": 400
+      }
+    ],
+    "featuredImage": {
+      "url": "/assets/images/t-shirt-2.png",
+      "altText": "Product 2 Featured Image",
+      "width": 600,
+      "height": 400
+    },
+    "tags": ["bestseller"],
+    "seo": {
+      "title": "Product 2 SEO Title",
+      "description": "SEO description for Product 2."
+    },
+    "updatedAt": "2024-08-13T12:00:00Z"
+  },
+  {
+    "id": "3",
+    "handle": "product-3",
+    "availableForSale": true,
+    "title": "T Shirt - Spiral",
+    "description": "This is the description for Product 3.",
+    "descriptionHtml": "<p>This is the description for Product 3.</p>",
+    "options": [
+      {
+        "id": "option1",
+        "name": "Size",
+        "values": ["S", "M", "L"]
+      },
+      {
+        "id": "option3",
+        "name": "Color",
+        "values": ["Red", "Blue", "Green"]
+      }
+    ],
+    "priceRange": {
+      "maxVariantPrice": {
+        "amount": "50.00",
+        "currencyCode": "USD"
+      },
+      "minVariantPrice": {
+        "amount": "30.00",
+        "currencyCode": "USD"
+      }
+    },
+    "variants": [
+      {
+        "id": "variant3",
+        "title": "Small Red",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Size",
+            "value": "S"
+          },
+          {
+            "name": "Color",
+            "value": "Red"
+          }
+        ],
+        "price": {
+          "amount": "30.00",
+          "currencyCode": "USD"
+        }
+      },
+      {
+        "id": "variant3",
+        "title": "Medium Blue",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Size",
+            "value": "M"
+          },
+          {
+            "name": "Color",
+            "value": "Blue"
+          }
+        ],
+        "price": {
+          "amount": "40.00",
+          "currencyCode": "USD"
+        }
+      }
+    ],
+    "images": [
+      {
+        "url": "/assets/images/t-shirt-spiral-1.png",
+        "altText": "Product 3 Image 2",
+        "width": 600,
+        "height": 400
+      },
+      {
+        "url": "/assets/images/t-shirt-spiral-2.png",
+        "altText": "Product 3 Image 2",
+        "width": 600,
+        "height": 400
+      }
+    ],
+    "featuredImage": {
+      "url": "/assets/images/t-shirt-spiral-1.png",
+      "altText": "Product 3 Featured Image",
+      "width": 600,
+      "height": 400
+    },
+    "tags": ["new", "sale"],
+    "seo": {
+      "title": "Product 3 SEO Title",
+      "description": "SEO description for Product 3."
+    },
+    "updatedAt": "2024-08-13T12:00:00Z"
+  }
+]

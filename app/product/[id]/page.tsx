@@ -12,12 +12,8 @@ import { Image } from 'lib/shopify/types';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-export async function generateMetadata({
-  params
-}: {
-  params: { handle: string };
-}): Promise<Metadata> {
-  const product = await getProduct(params.handle);
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const product = await getProduct(params.id);
 
   if (!product) return notFound();
 
@@ -50,8 +46,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = await getProduct(params.handle);
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const product = await getProduct(params.id);
 
   if (!product) return notFound();
 
@@ -121,12 +117,12 @@ async function RelatedProducts({ id }: { id: string }) {
       <ul className="flex w-full gap-4 overflow-x-auto pt-1">
         {relatedProducts.map((product) => (
           <li
-            key={product.handle}
+            key={product.id}
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
             <Link
               className="relative h-full w-full"
-              href={`/product/${product.handle}`}
+              href={`/product/${product.id}`}
               prefetch={true}
             >
               <GridTileImage

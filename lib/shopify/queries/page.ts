@@ -19,8 +19,8 @@ const pageFragment = /* GraphQL */ `
 `;
 
 export const getPageQuery = /* GraphQL */ `
-  query getPage($handle: String!) {
-    pageByHandle(handle: $handle) {
+  query getPage($id: String!) {
+    pageById(id: $id) {
       ...page
     }
   }

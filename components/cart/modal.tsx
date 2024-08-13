@@ -104,7 +104,7 @@ export default function CartModal() {
                         });
 
                         const merchandiseUrl = createUrl(
-                          `/product/${item.merchandise.product.handle}`,
+                          `/product/${item.merchandise.product.id}`,
                           new URLSearchParams(merchandiseSearchParams)
                         );
 
