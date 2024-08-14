@@ -36,7 +36,7 @@ export type CartItem = {
   };
 };
 
-export type Collection = ShopifyCollection & {
+export type Collection = CollectionInfo & {
   path: string;
 };
 
@@ -107,7 +107,7 @@ export type CartInfo = {
   totalQuantity: number;
 };
 
-export type ShopifyCollection = {
+export type CollectionInfo = {
   id: string;
   handle: string;
   title: string;
@@ -194,14 +194,14 @@ export type UpdateCartOperationParams = {
 
 export type CollectionOperation = {
   data: {
-    collection: ShopifyCollection;
+    collection: CollectionInfo;
   };
   variables: {
     handle: string;
   };
 };
 
-export type ShopifyCollectionProductsOperation = {
+export type CollectionProductsOperationParams = {
   data: {
     collection: {
       products: Connection<ShopifyProduct>;
@@ -216,7 +216,7 @@ export type ShopifyCollectionProductsOperation = {
 
 export type ShopifyCollectionsOperation = {
   data: {
-    collections: Connection<ShopifyCollection>;
+    collections: Connection<CollectionInfo>;
   };
 };
 

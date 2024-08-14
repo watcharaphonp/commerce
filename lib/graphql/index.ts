@@ -4,7 +4,6 @@ import { revalidateTag } from 'next/cache';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import cartList from '../../database/carts.json';
-import categoryList from '../../database/categories.json';
 import collectionList from '../../database/collections.json';
 import productList from '../../database/products.json';
 import { editCartItemsMutation, removeFromCartMutation } from './mutations/cart';
@@ -13,13 +12,13 @@ import {
   CartInfo,
   CartItem,
   Collection,
+  CollectionInfo,
   Connection,
   Image,
   Menu,
   Page,
   Product,
   RemoveFromCartOperationParams,
-  ShopifyCollection,
   ShopifyProduct,
   UpdateCartOperationParams
 } from './types';
@@ -96,7 +95,7 @@ const reshapeCart = (cart: CartInfo): Cart => {
   };
 };
 
-const reshapeCollection = (collection: ShopifyCollection): Collection | undefined => {
+const reshapeCollection = (collection: CollectionInfo): Collection | undefined => {
   if (!collection) {
     return undefined;
   }
@@ -107,7 +106,7 @@ const reshapeCollection = (collection: ShopifyCollection): Collection | undefine
   };
 };
 
-const reshapeCollections = (collections: ShopifyCollection[]) => {
+const reshapeCollections = (collections: CollectionInfo[]) => {
   const reshapedCollections = [];
 
   for (const collection of collections) {
@@ -285,7 +284,11 @@ export async function getCollections(): Promise<Collection[]> {
 }
 
 export async function getMenu(id: string): Promise<Menu[]> {
-  return categoryList;
+  const categoryList = collectionList.map(({title, path}) => ({title, path}));
+  return [{
+    title: 'All',
+    path: '/',
+  }, ...categoryList];
 }
 
 export async function getPage(id: string): Promise<Page> {
